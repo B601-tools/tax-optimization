@@ -14,6 +14,10 @@ Investments={
         'Lerato':[0, 0, 0, 0, 0], 
         }
 
+#Tis the season to be jolly. The Lock down is helping me lear Git and this will be swell. 
+
+
+print('Hello, COVID-19, your days are numbered')
 #This is not the season to be Jolly.
 
 print("Goodbye COVID-19")
