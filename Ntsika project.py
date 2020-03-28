@@ -10,5 +10,6 @@ import numpy as np
 Investments={
         'Ntsika':[256508, 22055, 111905, 2917, 0],
         'Refiloe':[7200, 21170, 0, 0, 0], 
+        'Thando':[100, 0, 0, 0, 0],
         'Lerato':[0, 0, 0, 0, 0], 
         }
