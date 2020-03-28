@@ -13,3 +13,7 @@ Investments={
         'Thando':[200, 0, 0, 0, 0],
         'Lerato':[0, 0, 0, 0, 0], 
         }
+
+#This is not the season to be Jolly.
+
+print("Goodbye COVID-19")
