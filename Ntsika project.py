@@ -18,3 +18,6 @@ Investments={
 
 
 print('Hello, COVID-19, your days are numbered')
+#This is not the season to be Jolly.
+
+print("Goodbye COVID-19")
