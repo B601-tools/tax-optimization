@@ -7,6 +7,7 @@ Created on Sat Mar 28 18:41:36 2020
 
 import numpy as np
 from scipy.optimize import minimize
+from scipy.optimize import LinearConstraint
 
 Income={
 #        'Heading':['Salary', 'Rental', 'Commission', 'Dividends', 'Interest', 'CapitalGain'],
@@ -68,7 +69,28 @@ def obj_func(x):
 
 
 
-x0=np.array(list(range(12)))# initial guess
-res = minimize(obj_func, x0, method='nelder-mead',options={'xatol': 1e-8, 'disp': True})
+x0=np.array([0, sum(Funds['KC']), 0, 0, 0, sum(Funds['NC']), 0, 0, sum(Funds['ME']), 0, 0, 0])# initial guess
 
+#define constraints
+
+def constraint1(x):
+    return x[0]+x[1]+x[2]+x[3]-sum(Funds['KC'])
+
+def constraint2(x):
+    return x[4]+x[5]+x[6]+x[7]-sum(Funds['NC'])
+    
+def constraint3(x):
+    return x[8]+x[9]+x[10]+x[11]-sum(Funds['ME'])
+
+con1={'type':'eq','fun':constraint1}
+con2={'type':'eq','fun':constraint2}
+con3={'type':'eq','fun':constraint3}
+
+cons=[con1,con2,con3]
+
+#solve using 
+
+
+sol = minimize(obj_func,x0,method='SLSQP',bounds=None,constraints=cons)
+print(sol)
 
