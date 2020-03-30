@@ -20,7 +20,8 @@ class client:
         self.interest=interest
         self.capital_gains=capital_gains
         self.ra_contribution=ra_contribution
-
+        
+    
     
     def gross_income(self) :
         gross_income = self.gross_salary+self.rental_income+self.commission+self.local_dividends+self.foreign_dividends+self.interest+self.capital_gains

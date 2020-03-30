@@ -8,7 +8,9 @@ Created on Sat Mar 28 18:41:36 2020
 # %% Import Statements
 import numpy as np
 from scipy.optimize import minimize
-exec(open('class_check.py').read())
+exec(open('class_definitions.py').read())
+
+Ntsika = client("Ntsika",23,300000)
 
 # %% Initial Variables
 Income={
