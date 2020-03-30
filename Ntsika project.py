@@ -12,10 +12,10 @@ from scipy.optimize import minimize
 # %% Initial Variables
 Income={
 #        'Heading':['Salary', 'Rental', 'Commission', 'Dividends', 'Interest', 'CapitalGain'],
-        'Ntsika':[256508, 22055, 111905, 2917, 0,0],
-        'Refiloe':[7200, 21170, 0, 0, 0, 0], 
-        'Thando':[0, 0, 0, 0, 0, 0],
-        'Lerato':[0, 0, 0, 0, 0, 0], 
+        'Ntsika':[256508, 0, 0, 0, 0,0],
+        'Refiloe':[256508, 0, 0, 0, 0, 0], 
+        'Thando':[100000, 0, 0, 0, 0, 0],
+        'Lerato':[100000, 0, 0, 0, 0, 0], 
         }
 
 
@@ -78,7 +78,7 @@ def obj_func(x):
     Ntsika=tax(sum(Income['Ntsika'])+x[4]+x[8])[1]
     Refiloe=tax(sum(Income['Refiloe'])+x[1]+x[5]+x[9])[1]    
     Thando=tax(sum(Income['Thando'])+x[2]+x[10])[1]
-    Lerato=tax(sum(Income['Lerato'])+x[11])[1]
+    Lerato=tax(sum(Income['Lerato'])+x[3]+x[11])[1]
     
     total_tax=Ntsika+Refiloe+Thando+Lerato
     return total_tax
@@ -122,4 +122,4 @@ solution_vector=sol.x[:]
 
 np.set_printoptions(suppress=True)
 print(solution_vector)
-
+print(sol.fun)
