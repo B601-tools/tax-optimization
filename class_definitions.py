@@ -115,6 +115,7 @@ class client:
                 
         
         def Access_Constraint(x):
+            
             ME_rental=sum(x[56:59])
             ME_rental=sum(x[52:55])
             ME_interest=sum(x[40:43])
@@ -283,10 +284,10 @@ con12={'type':'eq','fun':constraint_12}
 con13={'type':'eq','fun':constraint_13}  
 con14={'type':'eq','fun':constraint_14}  
 con15={'type':'eq','fun':constraint_15}
-con16={'type':'eq','fun':Ntsika1.fund_constraints('KC','NC')}
+#con16={'type':'eq','fun':Ntsika1.fund_constraints('KC','NC')}
 #con17={'type':'eq','fun':Refiloe1.fund_constraints('KC','ME','NC')}
-con18={'type':'eq','fun':Thando1.fund_constraints('KC','ME')}
-con19={'type':'eq','fun':Lerato1.fund_constraints('KC','ME')}
+#con18={'type':'eq','fun':Thando1.fund_constraints('KC','ME')}
+#con19={'type':'eq','fun':Lerato1.fund_constraints('KC','ME')}
 
 
 
@@ -306,11 +307,11 @@ x0=np.array([10000]*59)
 
 sol = minimize(obj_func,x0,method='SLSQP',bounds=bnds,constraints=cons)
 
-#solution_vector=sol.x[:]
-#
-#np.set_printoptions(suppress=True)
-#print(solution_vector)
-print(sol)
+solution_vector=sol.x[:]
+
+np.set_printoptions(suppress=True)
+print(solution_vector)
+
 
 
 
