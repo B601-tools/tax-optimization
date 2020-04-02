@@ -116,35 +116,35 @@ class client:
         
         def Access_Constraint(x):
             
-            ME_rental=sum(x[56:59])
-            ME_rental=sum(x[52:55])
-            ME_interest=sum(x[40:43])
-            ME_foreign_dividends=sum(x[44:47])
-            ME_local_dividends=sum(x[48:51])
+            ME_rental=sum(x[56:60])
+            ME_rental=sum(x[52:56])
+            ME_interest=sum(x[40:44])
+            ME_foreign_dividends=sum(x[44:48])
+            ME_local_dividends=sum(x[48:52])
             
-            ME=ME_local_dividends+ME_foreign_dividends+ME_interest+ME_rental+ME_rental
-            
-            
-            NC_local_dividends=sum(x[28:31])
-            NC_interest=sum(x[20:23])
-            NC_rental=sum(x[32:35])
-            NC_rental=sum(x[36:39])
-            NC_foreign_dividends=sum(x[24:27])
-            
-            NC=NC_local_dividends+NC_foreign_dividends+NC_interest+NC_rental+NC_rental
+            ME1=ME_local_dividends+ME_foreign_dividends+ME_interest+ME_rental+ME_rental
             
             
-            KC_rental=sum(x[12:15])
-            KC_rental=sum(x[16:19])
-            KC_interest=sum(x[0:3])
-            KC_foreign_dividends=sum(x[4:7])
-            KC_local_dividends=sum(x[8:11])
+            NC_local_dividends=sum(x[28:32])
+            NC_interest=sum(x[20:24])
+            NC_rental=sum(x[32:36])
+            NC_rental=sum(x[36:40])
+            NC_foreign_dividends=sum(x[24:28])
             
-            KC=KC_local_dividends+KC_foreign_dividends+KC_interest+KC_rental+KC_rental
+            NC1=NC_local_dividends+NC_foreign_dividends+NC_interest+NC_rental+NC_rental
             
-            Total_funds_var={'KC':KC,
-                             'NC':NC,
-                             'ME':ME}
+            
+            KC_rental=sum(x[12:16])
+            KC_rental=sum(x[16:20])
+            KC_interest=sum(x[0:4])
+            KC_foreign_dividends=sum(x[4:8])
+            KC_local_dividends=sum(x[8:12])
+            
+            KC1=KC_local_dividends+KC_foreign_dividends+KC_interest+KC_rental+KC_rental
+            
+            Total_funds_var={'KC':KC1,
+                             'NC':NC1,
+                             'ME':ME1}
             
             portfolio=['KC','NC','ME']
             
@@ -189,21 +189,21 @@ class Fund:
         
 def obj_func(x):
     
-    Ntsika=client(name='Ntsika', age=23, gross_salary=256508, rental_income=22055+sum(x[12:52:20]), 
-                  commission=111905, local_dividends=2917+sum(x[8:48:20]), foreign_dividends=0+sum(x[4:44:20]), 
-                  interest=0+sum(x[0:40:20]), capital_gains=0+sum(x[16:56:20]), ra_contribution=0)
+    Ntsika=client(name='Ntsika', age=23, gross_salary=256508, rental_income=22055+sum(x[12:53:20]), 
+                  commission=111905, local_dividends=2917+sum(x[8:49:20]), foreign_dividends=0+sum(x[4:45:20]), 
+                  interest=0+sum(x[0:41:20]), capital_gains=0+sum(x[16:57:20]), ra_contribution=0)
     
-    Refiloe=client(name='Refiloe', age=22, gross_salary=7500, rental_income=21170+sum(x[13:53:20]), 
-                   commission=0, local_dividends=0+sum(x[9:49:20]), foreign_dividends=0+sum(x[5:45:20]),
-                   interest=0+sum(x[1:41:20]), capital_gains=0+sum(x[17:57:20]), ra_contribution=0)
+    Refiloe=client(name='Refiloe', age=22, gross_salary=7500, rental_income=21170+sum(x[13:54:20]), 
+                   commission=0, local_dividends=0+sum(x[9:50:20]), foreign_dividends=0+sum(x[5:46:20]),
+                   interest=0+sum(x[1:42:20]), capital_gains=0+sum(x[17:58:20]), ra_contribution=0)
     
-    Thando=client(name='Thando', age=8, gross_salary=0, rental_income=0+sum(x[14:54:20]), 
-                 commission=0, local_dividends=0+sum(x[10:50:20]), foreign_dividends=0+sum(x[6:46:20]),
-                 interest=0+sum(x[2:42:20]), capital_gains=0+sum(x[18:58:20]), ra_contribution=0)
+    Thando=client(name='Thando', age=8, gross_salary=0, rental_income=0+sum(x[14:55:20]), 
+                 commission=0, local_dividends=0+sum(x[10:51:20]), foreign_dividends=0+sum(x[6:47:20]),
+                 interest=0+sum(x[2:43:20]), capital_gains=0+sum(x[18:59:20]), ra_contribution=0)
     
-    Lerato=client(name='Lerato', age=15, gross_salary=0, rental_income=0+sum(x[15:55:20]), 
-                  commission=0, local_dividends=0+sum(x[11:51:20]), foreign_dividends=0+sum(x[7:47:20]),
-                  interest=0+sum(x[3:43:20]), capital_gains=0+sum(x[19:59:20]), ra_contribution=0)
+    Lerato=client(name='Lerato', age=15, gross_salary=0, rental_income=0+sum(x[15:56:20]), 
+                  commission=0, local_dividends=0+sum(x[11:52:20]), foreign_dividends=0+sum(x[7:48:20]),
+                  interest=0+sum(x[3:44:20]), capital_gains=0+sum(x[19:60:20]), ra_contribution=0)
 
 
     total_tax=Ntsika.tax()+Refiloe.tax()+Thando.tax()+Lerato.tax()
@@ -222,49 +222,49 @@ Lerato1=client()
     
 
 def constraint_1(x):
-    return sum(x[0:3])-KC.interest
+    return sum(x[0:4])-KC.interest
 
 def constraint_2(x):
-    return sum(x[20:23])-NC.interest
+    return sum(x[20:24])-NC.interest
 
 def constraint_3(x):
-    return sum(x[40:43])-ME.interest
+    return sum(x[40:44])-ME.interest
 
 def constraint_4(x):
-    return sum(x[4:7])-KC.foreign_dividends
+    return sum(x[4:8])-KC.foreign_dividends
 
 def constraint_5(x):
-    return sum(x[24:27])-NC.foreign_dividends
+    return sum(x[24:28])-NC.foreign_dividends
 
 def constraint_6(x):
-    return sum(x[44:47])-ME.foreign_dividends
+    return sum(x[44:48])-ME.foreign_dividends
      
 def constraint_7(x):
-    return sum(x[8:11])-KC.local_dividends
+    return sum(x[8:12])-KC.local_dividends
 
 def constraint_8(x):
-    return sum(x[28:31])-NC.local_dividends
+    return sum(x[28:32])-NC.local_dividends
 
 def constraint_9(x):
-    return sum(x[48:51])-ME.local_dividends        
+    return sum(x[48:52])-ME.local_dividends        
 
 def constraint_10(x):
-    return sum(x[12:15])-KC.rental
+    return sum(x[12:16])-KC.rental
 
 def constraint_11(x):
-    return sum(x[32:35])-NC.rental
+    return sum(x[32:36])-NC.rental
 
 def constraint_12(x):
-    return sum(x[52:55])-ME.rental
+    return sum(x[52:56])-ME.rental
 
 def constraint_13(x):
-    return sum(x[16:19])-KC.rental
+    return sum(x[16:20])-KC.capital_gains
 
 def constraint_14(x):
-    return sum(x[36:39])-NC.rental
+    return sum(x[36:40])-NC.capital_gains
 
 def constraint_15(x):
-    return sum(x[56:59])-ME.rental
+    return sum(x[56:60])-ME.capital_gains
  
             
 
@@ -285,7 +285,7 @@ con13={'type':'eq','fun':constraint_13}
 con14={'type':'eq','fun':constraint_14}  
 con15={'type':'eq','fun':constraint_15}
 #con16={'type':'eq','fun':Ntsika1.fund_constraints('KC','NC')}
-#con17={'type':'eq','fun':Refiloe1.fund_constraints('KC','ME','NC')}
+##con17={'type':'eq','fun':Refiloe1.fund_constraints('KC','ME','NC')}
 #con18={'type':'eq','fun':Thando1.fund_constraints('KC','ME')}
 #con19={'type':'eq','fun':Lerato1.fund_constraints('KC','ME')}
 
@@ -295,21 +295,22 @@ con15={'type':'eq','fun':constraint_15}
 
 
 cons=[con1,con2,con3,con4,con5,con6,con7,con8,con9,
-      con10,con11,con12,con13,con14,con15]#,con16,con17,con18,con19]
+      con10,con11,con12,con13,con14,con15]#,con16,con18,con19]#con17 omitted
 
 
 
 b=(0,np.inf)
 
-bnds=tuple([b]*59)
+bnds=tuple([b]*60)
     
-x0=np.array([10000]*59)
+x0=np.array([100000]*60)
 
 sol = minimize(obj_func,x0,method='SLSQP',bounds=bnds,constraints=cons)
 
 solution_vector=sol.x[:]
 
 np.set_printoptions(suppress=True)
+print(sol.message,end='\n\n')
 print(solution_vector)
 
 
