@@ -8,6 +8,9 @@ Created on Sat Mar 28 18:41:36 2020
 # %% Import Statements
 import numpy as np
 from scipy.optimize import minimize
+exec(open('class_definitions.py').read())
+
+Ntsika = client("Ntsika",23,300000)
 
 # %% Initial Variables
 Income={
@@ -33,44 +36,10 @@ RA_contributions={
         'Lerato': 300*12
         }
 
-# %% Function Definitions
 
-def deduction_ra(ra_contribution, taxable_income):
-    return min(ra_contribution, 0.275*taxable_income, 350000)
 
-def tax(annual_income):
-    '''returns tax rate and contribution 
-    for an individual's annual income'''
-    if 14220<annual_income<189880 :
-        rate=0.18
-        cont=(annual_income)*rate+0
-    elif 189881<annual_income<296540 :
-        rate=0.26
-        cont=(annual_income-189881)*rate+34178
-    elif 296541<annual_income<410460 :
-        rate=0.31
-        cont=(annual_income-296541)*rate+61910
-    elif 410461<annual_income<555600 :
-        rate=0.36
-        cont=(annual_income-410461)*rate+97225
-    elif 555601<annual_income<708310 :
-        rate=0.41
-        cont=(annual_income-555601)*rate+149475
-    elif 708311<annual_income<1500000 :
-        rate=0.41
-        cont=(annual_income-708311)*rate+209032
-    elif 1500000<annual_income :
-        rate=0.45
-        cont=(annual_income-1500000)*rate+533625
-    else :
-        rate=0
-        cont=0
-
-#conditions for rebates, interest exemption
-#and capital gains exemptions still need to be added
+# %% Objective Function and Constraints 
     
-    return [rate, cont]  
-
 def obj_func(x):
 #   Here is what x stands for:
 #   KC1+ KC2+ KC3+ KC4+ NC1+ NC2+ NC3+ NC4+ ME1+ ME2+ ME3+  ME4
