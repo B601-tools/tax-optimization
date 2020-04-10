@@ -243,7 +243,7 @@ b=(0,np.inf)
 
 bnds=tuple([b]*60)
     
-x0=np.array([1000]*60)
+x0=np.array([5000]*60)
 
 sol = minimize(obj_func,x0,method='SLSQP',bounds=bnds,constraints=cons)
 
@@ -251,6 +251,12 @@ solution_vector=sol.x[:]
 
 np.set_printoptions(suppress=True)
 print(sol.message,end='\n\n')
-print('Tax_payable:',sol.fun)
+print('Tax payable:',sol.fun)
 print('Overall tax rate:',(sol.fun/(KC.returns()+NC.returns()+ME.returns()))*100)
 print(solution_vector)
+
+
+
+
+
+
