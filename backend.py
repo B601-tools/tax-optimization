@@ -6,7 +6,9 @@ Created on Mon Mar 30 18:33:11 2020
 """
 
 import numpy as np
+import pandas as pd
 from scipy.optimize import minimize
+pd.options.display.float_format = 'R {:,.2f}'.format
 
 class client:
     '''
@@ -105,21 +107,18 @@ def Access_Constraint(x):
     all_funds=['KC','NC','ME']
     clients=['Ntsika','Refiloe','Thando','Lerato']
     fund_arguments=5
-        
-    inaccessible_funds={'Ntsika':['KC'],'Thando':['NC'],'Lerato':['NC']}        
+    
+    inaccessible_funds={'Ntsika':['KC'],'Refiloe':[],'Thando':['NC'],'Lerato':['NC']}        
     for client in list(inaccessible_funds.keys()):
         for item in inaccessible_funds[client]:
             b=item
             item=[b]
-            for i in range(0,len(item)):
-                x_0=len(clients)*fund_arguments*all_funds.index(item[i])
-                x_i=list(range(x_0+(clients.index(client)),x_0+len(clients)*int(fund_arguments),len(clients)))
-                for i in x_i:
-                    constraint.append(x[i])                        
+            x_0=len(clients)*fund_arguments*all_funds.index(b)
+            x_i=list(range(x_0+(clients.index(client)),x_0+len(clients)*int(fund_arguments),len(clients)))
+            for i in x_i:
+                constraint.append(x[i])                        
     return sum(constraint)
-        
 
-#%%
 class Fund:
     def __init__(self,interest=0, foreign_dividends=0,
                  local_dividends=0,rental=0,capital_gains=0):
@@ -250,7 +249,29 @@ sol = minimize(obj_func,x0,method='SLSQP',bounds=bnds,constraints=cons)
 solution_vector=sol.x[:]
 
 np.set_printoptions(suppress=True)
+
+all_funds=['KC','NC','ME']
+income_types = ['Interest', 'Foreign Dividends', 'Local Dividends', 'Rentail Income', 'Capital Gains']
+
+line_items = []
+for fund in all_funds:
+    for income in income_types:
+        line_items.append(fund + ' ' + income)
+
+clients=['Ntsika','Refiloe','Thando','Lerato']
+fund_arguments=5
+
+solution_vector.shape = (len(all_funds)*fund_arguments, len(clients))
+
+solution_df = pd.DataFrame(data = solution_vector, columns = clients)
+solution_df.round(2)
+solution_df.insert(0, "Fund Income", line_items)
+solution_df
+
+overall_tax_rate = (sol.fun/(KC.returns()+NC.returns()+ME.returns()))*100
+
 print(sol.message,end='\n\n')
-print('Tax_payable:',sol.fun)
-print('Overall tax rate:',(sol.fun/(KC.returns()+NC.returns()+ME.returns()))*100)
-print(solution_vector)
+print('Tax_payable: %.2f' % sol.fun)
+print('Overall tax rate: %.2f%% \n \n' % overall_tax_rate)
+
+print(solution_df)
