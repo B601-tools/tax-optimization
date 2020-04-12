@@ -242,7 +242,7 @@ b=(0,np.inf)
 
 bnds=tuple([b]*60)
     
-x0=np.array([1000]*60)
+x0=np.array([5000]*60)
 
 sol = minimize(obj_func,x0,method='SLSQP',bounds=bnds,constraints=cons)
 
@@ -271,6 +271,7 @@ solution_df
 overall_tax_rate = (sol.fun/(KC.returns()+NC.returns()+ME.returns()))*100
 
 print(sol.message,end='\n\n')
+
 print('Tax_payable: %.2f' % sol.fun)
 print('Overall tax rate: %.2f%% \n \n' % overall_tax_rate)
 
