@@ -8,7 +8,6 @@ Created on Mon Mar 30 18:33:11 2020
 import numpy as np
 import pandas as pd
 from scipy.optimize import minimize
-pd.options.display.float_format = 'R {:,.2f}'.format
 
 class client:
     '''
